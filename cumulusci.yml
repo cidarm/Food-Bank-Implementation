@@ -1,0 +1,30 @@
+minimum_cumulusci_version: '3.9.0c'
+project:
+    name: Food-Bank-Implementation
+    package:
+        name:  Food-Bank-Implementation
+        api_version: '47.0'
+    dependencies:
+                  - github: 'https://github.com/SalesforceFoundation/NPSP'
+                  - github: 'https://github.com/cidarm/Food-Bank'
+    source_format: sfdx
+tasks:
+    robot:
+        options:
+            suites: robot/Food-Bank-Implementation/tests
+            options:
+                outputdir: robot/Food-Bank-Implementation/results
+
+    robot_testdoc:
+        options:
+            path: robot/Food-Bank-Implementation/tests
+            output: robot/Food-Bank-Implementation/doc/Food-Bank-Implementation_tests.html
+# CCI needs the ability to test scratch org creation when running the flow.  If you're using a dev org then 3 scratch orgs is the limit.
+sources:
+    npsp:
+        github: https://github.com/SalesforceFoundation/NPSP
+flows:
+    dependencies:
+        steps:
+            3:
+                flow: npsp:config_managed
